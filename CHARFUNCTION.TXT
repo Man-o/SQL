@@ -1,0 +1,115 @@
+SQL> SELECT LENGTH('MANO') FROM DUAL;
+
+LENGTH('MANO')                                                                  
+--------------                                                                  
+             4                                                                  
+
+SQL> SELECT LENGTH('HII GUYS') FROM DUAL;
+
+LENGTH('HIIGUYS')                                                               
+-----------------                                                               
+                8                                                               
+
+SQL> SELECT UPPER('MANO') FROM DUAL;
+
+UPPE                                                                            
+----                                                                            
+MANO                                                                            
+
+SQL> SELECT UPPER ('Mano') FROM DUAL;
+
+UPPE                                                                            
+----                                                                            
+MANO                                                                            
+
+SQL> SELECT UPPER ('mano') FROM DUAL;
+
+UPPE                                                                            
+----                                                                            
+MANO                                                                            
+
+SQL> SELECT LOWER('MANO') FROM DUAL;
+
+LOWE                                                                            
+----                                                                            
+mano                                                                            
+
+SQL> SELECT LOWER('Mano') FROM DUAL;
+
+LOWE                                                                            
+----                                                                            
+mano                                                                            
+
+SQL> SELECT LOWER('mano') FROM DUAL;
+
+LOWE                                                                            
+----                                                                            
+mano                                                                            
+
+SQL> SELECT INITCAP('hello') FROM DUAL;
+
+INITC                                                                           
+-----                                                                           
+Hello                                                                           
+
+SQL> SELECT INITCAP ('hellO') FROM DUAL;
+
+INITC                                                                           
+-----                                                                           
+Hello                                                                           
+
+SQL> SELECT INITCAP ('hello world') FROM DUAL;
+
+INITCAP('HE                                                                     
+-----------                                                                     
+Hello World                                                                     
+
+SQL> SELECT REPLACE('MANO','FREAKY') FROM DUAL;
+
+REPL                                                                            
+----                                                                            
+MANO                                                                            
+
+SQL> SELECT REPLACE('MANO','MANO','FREAKY') FROM DUAL;
+
+REPLAC                                                                          
+------                                                                          
+FREAKY                                                                          
+
+SQL> SELECT REPLACE ('MANO','NO','-NO') FROM DUAL;
+
+REPLA                                                                           
+-----                                                                           
+MA-NO                                                                           
+
+SQL> SELECT REPLACE ('MANO','MA') FROM DUAL;
+
+RE                                                                              
+--                                                                              
+NO                                                                              
+
+SQL> SELECT SUBSTR('DEVELOPER',1,7) FROM DUAL;
+
+SUBSTR(                                                                         
+-------                                                                         
+DEVELOP                                                                         
+
+SQL> SELECT SUBSTR('GUD MORNING',5) FROM DUAL;
+
+SUBSTR(                                                                         
+-------                                                                         
+MORNING                                                                         
+
+SQL> SELECT REVERSE('MADAM') FROM DUAL;
+
+REVER                                                                           
+-----                                                                           
+MADAM                                                                           
+
+SQL> SELECT REVERSE('MANO') FROM DUAL;
+
+REVE                                                                            
+----                                                                            
+ONAM                                                                            
+
+SQL> SPOOL OFF

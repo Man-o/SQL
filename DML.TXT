@@ -1,0 +1,178 @@
+SQL> CREATE TABLE IPL(TEAM VARCHAR(20),WIN NUMBER(20),LOSS NUMBER(20));
+
+Table created.
+
+SQL> DESC IPL;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TEAM                                               VARCHAR2(20)
+ WIN                                                NUMBER(20)
+ LOSS                                               NUMBER(20)
+
+SQL> INSERT INTO IPL (TEAM,WIN,LOSS)
+  2  VALUES('MUMBAI',8,0);
+
+1 row created.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS                                      
+-------------------- ---------- ----------                                      
+MUMBAI                        8          0                                      
+
+SQL> INSERT INTO IPL VALUES('RCB',4,4);
+
+1 row created.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS                                      
+-------------------- ---------- ----------                                      
+MUMBAI                        8          0                                      
+RCB                           4          4                                      
+
+SQL> INSERT INTO IPL VALUES(0,'KKR');
+INSERT INTO IPL VALUES(0,'KKR')
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> INSERT INTO IPL (TEAM,LOSS)
+  2  VALUES('CSK',4);
+
+1 row created.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS                                      
+-------------------- ---------- ----------                                      
+MUMBAI                        8          0                                      
+RCB                           4          4                                      
+CSK                                      4                                      
+
+SQL> ALTER TABLE IPL
+  2  ADD MATCHES NUMBER(20);
+
+Table altered.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS    MATCHES                           
+-------------------- ---------- ---------- ----------                           
+MUMBAI                        8          0                                      
+RCB                           4          4                                      
+CSK                                      4                                      
+
+SQL> UPDATE IPL SET MATCHES=8;
+
+3 rows updated.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS    MATCHES                           
+-------------------- ---------- ---------- ----------                           
+MUMBAI                        8          0          8                           
+RCB                           4          4          8                           
+CSK                                      4          8                           
+
+SQL> UPDATE IPL SET WIN=4 WHERE TEAM='CSK';
+
+1 row updated.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS    MATCHES                           
+-------------------- ---------- ---------- ----------                           
+MUMBAI                        8          0          8                           
+RCB                           4          4          8                           
+CSK                           4          4          8                           
+
+SQL> UPDATE IPL SET WIN=3,LOSS=5 WHERE TEAM='RCB';
+
+1 row updated.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS    MATCHES                           
+-------------------- ---------- ---------- ----------                           
+MUMBAI                        8          0          8                           
+RCB                           3          5          8                           
+CSK                           4          4          8                           
+
+SQL> INSERT INTO IPL(TEAM)
+  2  VALUES('KKR','SRH');
+INSERT INTO IPL(TEAM)
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL>  INSERT INTO IPL(TEAM)
+  2  VALUES('KKR');
+
+1 row created.
+
+SQL>  INSERT INTO IPL(TEAM)
+  2  VALUES('SRH');
+
+1 row created.
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS    MATCHES                           
+-------------------- ---------- ---------- ----------                           
+MUMBAI                        8          0          8                           
+RCB                           3          5          8                           
+CSK                           4          4          8                           
+KKR                                                                             
+SRH                                                                             
+
+SQL> 
+SQL>  INSERT INTO IPL(TEAM)
+  2  VALUES('DEL');
+
+1 row created.
+
+SQL> DELETE FROM IPL WHERE TEAM='KKR';
+
+1 row deleted.
+
+SQL> 
+SQL>  INSERT INTO IPL(TEAM)
+  2  
+SQL> 
+SQL> SELECT * FROM TABLE;
+SELECT * FROM TABLE
+                  *
+ERROR at line 1:
+ORA-00906: missing left parenthesis 
+
+
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS    MATCHES                           
+-------------------- ---------- ---------- ----------                           
+MUMBAI                        8          0          8                           
+RCB                           3          5          8                           
+CSK                           4          4          8                           
+SRH                                                                             
+DEL                                                                             
+
+SQL> DELETE FROM IPL WHERE TEAM IN ('SRH','DEL');
+
+2 rows deleted.
+
+SQL> 
+SQL>  INSERT INTO IPL(TEAM)
+  2  
+SQL> 
+SQL> SELECT * FROM IPL;
+
+TEAM                        WIN       LOSS    MATCHES                           
+-------------------- ---------- ---------- ----------                           
+MUMBAI                        8          0          8                           
+RCB                           3          5          8                           
+CSK                           4          4          8                           
+
+SQL> SPOOL OFF

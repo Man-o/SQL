@@ -1,0 +1,179 @@
+SQL>  SELECT INSTR('MANO','A') FROM DUAL;
+
+INSTR('MANO','A')                                                               
+-----------------                                                               
+                2                                                               
+
+SQL> SELECT INSTR('DEVELOPER','E',1,2);
+SELECT INSTR('DEVELOPER','E',1,2)
+                                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT INSTR('DEVELOPER','E',1,2) FROM DUAL;
+
+INSTR('DEVELOPER','E',1,2)                                                      
+--------------------------                                                      
+                         4                                                      
+
+SQL> SELECT INSTR('DEVELOPER','E',2,2) FROM DUAL;
+
+INSTR('DEVELOPER','E',2,2)                                                      
+--------------------------                                                      
+                         4                                                      
+
+SQL> SELECT INSTR ('DEVELOPMENT','E',3,3) FROM DUAL;
+
+INSTR('DEVELOPMENT','E',3,3)                                                    
+----------------------------                                                    
+                           0                                                    
+
+SQL> SELECT CONCAT(444,44) FROM DUAL;
+
+CONCA                                                                           
+-----                                                                           
+44444                                                                           
+
+SQL> SELECT CONCAT(444,44,4) FROM DUAL;
+SELECT CONCAT(444,44,4) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT CONCAT(444,'FOUR') FROM DUAL;
+
+CONCAT(                                                                         
+-------                                                                         
+444FOUR                                                                         
+
+SQL> SELECT CONCAT(ENAME,SAL) FROM EMP;
+
+CONCAT(ENAME,SAL)                                                               
+--------------------------------------------------                              
+SMITH800                                                                        
+ALLEN1600                                                                       
+WARD1250                                                                        
+JONES2975                                                                       
+MARTIN1250                                                                      
+BLAKE2850                                                                       
+CLARK2450                                                                       
+SCOTT3000                                                                       
+KING5000                                                                        
+TURNER1500                                                                      
+ADAMS1100                                                                       
+
+CONCAT(ENAME,SAL)                                                               
+--------------------------------------------------                              
+JAMES950                                                                        
+FORD3000                                                                        
+MILLER1300                                                                      
+
+14 rows selected.
+
+SQL> SELECT ASCII('S') FROM DUAL;
+
+ASCII('S')                                                                      
+----------                                                                      
+        83                                                                      
+
+SQL> SELECT ASCII('s') FROM DUAL;
+
+ASCII('S')                                                                      
+----------                                                                      
+       115                                                                      
+
+SQL> SELECT ASCII(')') FROM DUAL;
+
+ASCII(')')                                                                      
+----------                                                                      
+        41                                                                      
+
+SQL> SELECT TRIM('HELLO ') FROM DUAL;
+
+TRIM(                                                                           
+-----                                                                           
+HELLO                                                                           
+
+SQL> SELECT TRIM(' HE LL O ') FROM DUAL;
+
+TRIM('H                                                                         
+-------                                                                         
+HE LL O                                                                         
+
+SQL> SELECT TRIM('0' FROM 'MANO') FROM DUAL;
+
+TRIM                                                                            
+----                                                                            
+MANO                                                                            
+
+SQL>  SELECT TRIM('O' FROM 'MANO') FROM DUAL;
+
+TRI                                                                             
+---                                                                             
+MAN                                                                             
+
+SQL> SELECT LTRIM('O' FROM '0N0') FROM DUAL;
+SELECT LTRIM('O' FROM '0N0') FROM DUAL
+                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT LTRIM('O' FROM 'ONO') FROM DUAL;
+SELECT LTRIM('O' FROM 'ONO') FROM DUAL
+                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT LPAD('MUMBAI',13,'INDIANS') FROM DUAL;
+
+LPAD('MUMBAI'                                                                   
+-------------                                                                   
+INDIANSMUMBAI                                                                   
+
+SQL> SELECT LPAD('MUMBAI',3,'INDIANS') FROM DUAL;
+
+LPA                                                                             
+---                                                                             
+MUM                                                                             
+
+SQL> SELECT LPAD ('MUMBAI',16,'INDIANS') FROM DUAL;
+
+LPAD('MUMBAI',16                                                                
+----------------                                                                
+INDIANSINDMUMBAI                                                                
+
+SQL> SELECT RPAD('MUMBAI',13,'INDIANS') FROM DUAL;
+
+RPAD('MUMBAI'                                                                   
+-------------                                                                   
+MUMBAIINDIANS                                                                   
+
+SQL> SELECT RPAD('MUMBAI',14,' INDIANS') FROM DUAL;
+
+RPAD('MUMBAI',                                                                  
+--------------                                                                  
+MUMBAI INDIANS                                                                  
+
+SQL> SELECT RPAD('MUMBAI',11,'2024') FROM DUAL;
+
+RPAD('MUMBA                                                                     
+-----------                                                                     
+MUMBAI20242                                                                     
+
+SQL> SELECT RPAD('MUMBAI',11,' 2024') FROM DUAL;
+
+RPAD('MUMBA                                                                     
+-----------                                                                     
+MUMBAI 2024                                                                     
+
+SQL> SELECT RPAD('MANO',13,'FREAKY') FROM DUAL;
+
+RPAD('MANO',1                                                                   
+-------------                                                                   
+MANOFREAKYFRE                                                                   
+
+SQL> SPOOL OFF

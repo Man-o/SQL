@@ -1,0 +1,119 @@
+SQL> SELECT CURRENT_DATE FROM DUAL;
+
+CURRENT_D                                                                       
+---------                                                                       
+18-APR-24                                                                       
+
+SQL> SELECT SYSDATE FROM DATE;
+SELECT SYSDATE FROM DATE
+                    *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE                                                                         
+---------                                                                       
+18-APR-24                                                                       
+
+SQL> SELECT SESSIONTIMEZONE FROM DUAL;
+
+SESSIONTIMEZONE                                                                 
+---------------------------------------------------------------------------     
++05:30                                                                          
+
+SQL> SELECT ADD-MONTHS('25-MAR-03',122) FROM DUAL;
+SELECT ADD-MONTHS('25-MAR-03',122) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT ADD_MONTHS ('25-MAR-03',122) FROM DUAL;
+
+ADD_MONTH                                                                       
+---------                                                                       
+25-MAY-13                                                                       
+
+SQL> SELECT ADD_MONTHS ('25-MAR-03',252) FROM DUAL;
+
+ADD_MONTH                                                                       
+---------                                                                       
+25-MAR-24                                                                       
+
+SQL> SELECT ADD_MONTHS ('25-MAR-24',3) FROM DUAL;
+
+ADD_MONTH                                                                       
+---------                                                                       
+25-JUN-24                                                                       
+
+SQL> SELECT LAST_DAY('25-MAR-24') FROM DUAL;
+
+LAST_DAY(                                                                       
+---------                                                                       
+31-MAR-24                                                                       
+
+SQL> SELECT LAST_DAY('02-FEB-24') FROM DUAL;
+
+LAST_DAY(                                                                       
+---------                                                                       
+29-FEB-24                                                                       
+
+SQL>  SELECT LAST_DAY('02-FEB-23') FROM DUAL;
+
+LAST_DAY(                                                                       
+---------                                                                       
+28-FEB-23                                                                       
+
+SQL> SELECT MONTHS_BETWEEN('25-MAR-24','01-JAN-24') FROM DUAL;
+
+MONTHS_BETWEEN('25-MAR-24','01-JAN-24')                                         
+---------------------------------------                                         
+                             2.77419355                                         
+
+SQL> SELECT MONTHS_BETWEEN('25-MAR-24','25-MAR-03') FROM DUAL;
+
+MONTHS_BETWEEN('25-MAR-24','25-MAR-03')                                         
+---------------------------------------                                         
+                                    252                                         
+
+SQL> SELECT MONTHS_BETWEEN('25-MAR-24','26-MAR-24') FROM DUAL;
+
+MONTHS_BETWEEN('25-MAR-24','26-MAR-24')                                         
+---------------------------------------                                         
+                             -.03225806                                         
+
+SQL>  SELECT MONTHS_BETWEEN('25-MAR-24','25-MAR-24') FROM DUAL;
+
+MONTHS_BETWEEN('25-MAR-24','25-MAR-24')                                         
+---------------------------------------                                         
+                                      0                                         
+
+SQL> SELECT LAST_DAY('19-APR-24',FRIDAY) FROM DUAL;
+SELECT LAST_DAY('19-APR-24',FRIDAY) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT LAST_DAY('19-APR-24','FRIDAY') FROM DUAL;
+SELECT LAST_DAY('19-APR-24','FRIDAY') FROM DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments 
+
+
+SQL> SELECT NEXT_DAY('19-APR-24','FRIDAY') FROM DUAL;
+
+NEXT_DAY(                                                                       
+---------                                                                       
+26-APR-24                                                                       
+
+SQL> SELECT NEXT_DAY('19-APR-24','THURSDAY') FROM DUAL;
+
+NEXT_DAY(                                                                       
+---------                                                                       
+25-APR-24                                                                       
+
+SQL> SPOOL OFF

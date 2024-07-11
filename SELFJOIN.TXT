@@ -1,0 +1,269 @@
+SQL> SELECT E1*
+  2  FROM EMP E1,EMP E2
+  3  WHERE E2.ENAME='MARTIN' AND E2.SAL=E1.SAL;
+FROM EMP E1,EMP E2
+*
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> SELECT E1.*
+  2   FROM EMP E1,EMP E2
+  3   WHERE E2.ENAME='MARTIN' AND E2.SAL=E1.SAL;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+
+SQL> SET PAGES 20 LINES 90
+SQL> SELECT E1.*
+  2   FROM EMP E1,EMP E2
+  3   WHERE E2.ENAME='MARTIN' AND E2.SAL=E1.SAL;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+
+SQL> SELECT E1*
+  2  FROM EMP E1,EMP E2
+  3  WHERE E2.ENAME='MARTIN' AND E2.JOB=E1.JOB;
+FROM EMP E1,EMP E2
+*
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> SELECT E1.*
+  2  FROM EMP E1,EMP E2
+  3  WHERE E2.ENAME='MARTIN' AND E2.SAL=E1.SAL;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+
+SQL> SELECT E1.*
+  2  FROM EMP E1,EMP E2
+  3  WHERE E2.ENAME='MARTIN' AND E2.JOB=E1.JOB;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+
+SQL> SELECT E1.ENAME
+  2  FROM EMP E1,EMP E2
+  3  WHERE E2.ENAME='JONES' AND E2.JOB=E1.JOB;
+
+ENAME                                                                                     
+----------                                                                                
+JONES                                                                                     
+BLAKE                                                                                     
+CLARK                                                                                     
+
+SQL> SELECT E1.ENAME,E1.SAL,E2.ENAME,E2.SAL
+  2  FROM EMP E1,EMP E2
+  3  WHERE E1.MGR=E2.EMPNO;
+
+ENAME             SAL ENAME             SAL                                               
+---------- ---------- ---------- ----------                                               
+SMITH             800 FORD             3000                                               
+ALLEN            1600 BLAKE            2850                                               
+WARD             1250 BLAKE            2850                                               
+JONES            2975 KING             5000                                               
+MARTIN           1250 BLAKE            2850                                               
+BLAKE            2850 KING             5000                                               
+CLARK            2450 KING             5000                                               
+SCOTT            3000 JONES            2975                                               
+TURNER           1500 BLAKE            2850                                               
+ADAMS            1100 SCOTT            3000                                               
+JAMES             950 BLAKE            2850                                               
+FORD             3000 JONES            2975                                               
+MILLER           1300 CLARK            2450                                               
+
+13 rows selected.
+
+SQL> SELECT E1.ENAME,E1.SAL,E2.ENAME,E2.SAL
+  2  FROM EMP E1,EMP E2
+  3  WHERE E1.EMPNO=E2.MGR;
+
+ENAME             SAL ENAME             SAL                                               
+---------- ---------- ---------- ----------                                               
+FORD             3000 SMITH             800                                               
+BLAKE            2850 ALLEN            1600                                               
+BLAKE            2850 WARD             1250                                               
+KING             5000 JONES            2975                                               
+BLAKE            2850 MARTIN           1250                                               
+KING             5000 BLAKE            2850                                               
+KING             5000 CLARK            2450                                               
+JONES            2975 SCOTT            3000                                               
+BLAKE            2850 TURNER           1500                                               
+SCOTT            3000 ADAMS            1100                                               
+BLAKE            2850 JAMES             950                                               
+JONES            2975 FORD             3000                                               
+CLARK            2450 MILLER           1300                                               
+
+13 rows selected.
+
+SQL> SELECT E1.ENAME ,E2.ENAME,E2.SAL*12
+  2   FROM EMP E1,EMP E2
+  3  WHERE E1.JOB='ANALYST' AND E1.MGR=E2.EMPNO;
+
+ENAME      ENAME       E2.SAL*12                                                          
+---------- ---------- ----------                                                          
+SCOTT      JONES           35700                                                          
+FORD       JONES           35700                                                          
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+14 rows selected.
+
+SQL> SELECT E1.ENAME ,E2.ENAME,E2.SAL*12
+  2   FROM EMP E1,EMP E2
+  3  WHERE E1.JOB='ANALYST' AND E1.EMPNO=E2.MGR;
+
+ENAME      ENAME       E2.SAL*12                                                          
+---------- ---------- ----------                                                          
+FORD       SMITH            9600                                                          
+SCOTT      ADAMS           13200                                                          
+
+SQL> SELECT E1.ENAME,E2.ENAME
+  2  FROM EMP E1,EMP E2
+  3  WHERE E1.JOB=E2.JOB;
+
+ENAME      ENAME                                                                          
+---------- ----------                                                                     
+MILLER     SMITH                                                                          
+JAMES      SMITH                                                                          
+ADAMS      SMITH                                                                          
+SMITH      SMITH                                                                          
+TURNER     ALLEN                                                                          
+MARTIN     ALLEN                                                                          
+WARD       ALLEN                                                                          
+ALLEN      ALLEN                                                                          
+TURNER     WARD                                                                           
+MARTIN     WARD                                                                           
+WARD       WARD                                                                           
+ALLEN      WARD                                                                           
+CLARK      JONES                                                                          
+BLAKE      JONES                                                                          
+JONES      JONES                                                                          
+TURNER     MARTIN                                                                         
+MARTIN     MARTIN                                                                         
+
+ENAME      ENAME                                                                          
+---------- ----------                                                                     
+WARD       MARTIN                                                                         
+ALLEN      MARTIN                                                                         
+CLARK      BLAKE                                                                          
+BLAKE      BLAKE                                                                          
+JONES      BLAKE                                                                          
+CLARK      CLARK                                                                          
+BLAKE      CLARK                                                                          
+JONES      CLARK                                                                          
+FORD       SCOTT                                                                          
+SCOTT      SCOTT                                                                          
+KING       KING                                                                           
+TURNER     TURNER                                                                         
+MARTIN     TURNER                                                                         
+WARD       TURNER                                                                         
+ALLEN      TURNER                                                                         
+MILLER     ADAMS                                                                          
+JAMES      ADAMS                                                                          
+
+ENAME      ENAME                                                                          
+---------- ----------                                                                     
+ADAMS      ADAMS                                                                          
+SMITH      ADAMS                                                                          
+MILLER     JAMES                                                                          
+JAMES      JAMES                                                                          
+ADAMS      JAMES                                                                          
+SMITH      JAMES                                                                          
+FORD       FORD                                                                           
+SCOTT      FORD                                                                           
+MILLER     MILLER                                                                         
+JAMES      MILLER                                                                         
+ADAMS      MILLER                                                                         
+SMITH      MILLER                                                                         
+
+46 rows selected.
+
+SQL>  SELECT E1.ENAME,E2.ENAME
+  2   FROM EMP E1,EMP E2
+  3  WHERE E1.JOB=E2.JOB AND E1.MGR=E2.EMPNO;
+
+no rows selected
+
+SQL>  SELECT E1.ENAME,E2.ENAME
+  2   FROM EMP E1,EMP E2
+  3  
+SQL> SELECT E1.ENAME,E2.ENAME
+  2  FROM EMP E1,EMP E2
+  3  HERE E1.SAL=E2.SAL AND E1.MGR=E2.EMPNO;
+HERE E1.SAL=E2.SAL AND E1.MGR=E2.EMPNO
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT E1.ENAME,E2.ENAME
+  2  FROM EMP E1,EMP E2
+  3  WHERE E1.SAL=E2.SAL AND E1.MGR=E2.EMPNO;
+
+no rows selected
+
+SQL> SELECT * FROM
+  2  (SELECT SAL FROM EMP)
+  3  WHERE ENAME='MARTIN';
+WHERE ENAME='MARTIN'
+      *
+ERROR at line 3:
+ORA-00904: "ENAME": invalid identifier 
+
+
+SQL> SELECT * FROM
+  2  (SELECT SAL FROM EMP WHERE ENAME='MARTIN');
+
+       SAL                                                                                
+----------                                                                                
+      1250                                                                                
+
+SQL> SELECT * FROM
+  2  (SELECT * FROM EMP)
+  3  
+SQL> SELECT * FROM EMP WHERE SAL =
+  2  (SELECT SAL FROM EMP WHERE ENAME='MARTIN');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+
+SQL> SPOOL OFF

@@ -1,0 +1,112 @@
+SQL> CREATE TABLE IPL(TID NUMBER(20) PRIMARY KEY,TEAM VARCHAR(20),WIN NUMBER(10),LOSS NUMBER(10));
+CREATE TABLE IPL(TID NUMBER(20) PRIMARY KEY,TEAM VARCHAR(20),WIN NUMBER(10),LOSS NUMBER(10))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE INDIAN_PL(TID NUMBER(20) PRIMARY KEY,TEAM VARCHAR(20),WIN NUMBER(10),LOSS NUMBER(10));
+
+Table created.
+
+SQL> INSERT INTO INDIAN_PL(1,'MUMBAI',8,0);
+INSERT INTO INDIAN_PL(1,'MUMBAI',8,0)
+                      *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> INSERT INTO INDIAN_PL VALUES(1,'MUMBAI',8,0);
+
+1 row created.
+
+SQL> INSERT INTO INDIAN_PL VALUES(2,'CHENNAI',4,4);
+
+1 row created.
+
+SQL> INSERT INTO INDIAN_PL VALUES(3,'RCB',5,3);
+
+1 row created.
+
+SQL> INSERT INTO INDIAN_PL VALUES(4,'KKR',3,5);
+
+1 row created.
+
+SQL> SELECT * FROM INDIAN_PL;
+
+       TID TEAM                        WIN       LOSS                           
+---------- -------------------- ---------- ----------                           
+         1 MUMBAI                        8          0                           
+         2 CHENNAI                       4          4                           
+         3 RCB                           5          3                           
+         4 KKR                           3          5                           
+
+SQL> CREATE TABLE POINTS(TID REFERENCES INDIAN_PL(TID),POINTS NUMBER(10));
+
+Table created.
+
+SQL> INSERT INTO POINTS VALUES(1,16);
+
+1 row created.
+
+SQL> INSERT INTO POINTS VALUES(2,8);
+
+1 row created.
+
+SQL> INSERT INTO POINTS VALUES(3,10);
+
+1 row created.
+
+SQL> INSERT INTO POINTS VALUES(4,6);
+
+1 row created.
+
+SQL> SELECT * FROM POINTS;
+
+       TID     POINTS                                                           
+---------- ----------                                                           
+         1         16                                                           
+         2          8                                                           
+         3         10                                                           
+         4          6                                                           
+
+SQL> INSERT INTO POINTS VALUES(7,8);
+INSERT INTO POINTS VALUES(7,8)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.SYS_C005437) violated - parent key not 
+found 
+
+
+SQL> INSERT INTO POINTS VALUES(1,8);
+
+1 row created.
+
+SQL> SELECT * FROM POINTS;
+
+       TID     POINTS                                                           
+---------- ----------                                                           
+         1         16                                                           
+         2          8                                                           
+         3         10                                                           
+         4          6                                                           
+         1          8                                                           
+
+SQL> DELETE FROM POINTS WHERE TID=1 AND POINTS=8;
+
+1 row deleted.
+
+SQL> SELECT * FROM POINTS;
+
+       TID     POINTS                                                           
+---------- ----------                                                           
+         1         16                                                           
+         2          8                                                           
+         3         10                                                           
+         4          6                                                           
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SPOOL OFF

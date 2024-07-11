@@ -1,0 +1,189 @@
+SQL> SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FRO EMP
+  2  
+SQL> SELECT MAX(SAL) FROM EMP
+  2  WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP));
+
+  MAX(SAL)                                                                      
+----------                                                                      
+      2975                                                                      
+
+SQL> SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM FROM DEPT WHERE DEPT='ACCOUNTING'));
+SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM FROM DEPT WHERE DEPT='ACCOUNTING'))
+                                                                                                  *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM FROM DEPT WHERE DNAME='ACCOUNTING'));
+SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM FROM DEPT WHERE DNAME='ACCOUNTING'))
+                                                                                                  *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL>  SELECT ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE DEPTNO IN
+  2  (SELECT DEPTNO FROM DEPT WHERE DNAME='ACCOUNTING'));
+
+ENAME             SAL                                                           
+---------- ----------                                                           
+KING             5000                                                           
+
+SQL> SELECT MAX(SAL) FROM EMP;
+
+  MAX(SAL)                                                                      
+----------                                                                      
+      5000                                                                      
+
+SQL> SELECT ENAME,SAL FROM EMP WHERE MAX(SAL);
+SELECT ENAME,SAL FROM EMP WHERE MAX(SAL)
+                                *
+ERROR at line 1:
+ORA-00934: group function is not allowed here 
+
+
+SQL> SELECT DEPTNO FROM DEPT WHERE DNAME='ACCOUNTING';
+
+    DEPTNO                                                                      
+----------                                                                      
+        10                                                                      
+
+SQL> SELECT DEPTNO FROM EMP WHERE SAL=5000;
+
+    DEPTNO                                                                      
+----------                                                                      
+        10                                                                      
+
+SQL> SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<))));
+SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<))))
+                                    *
+ERROR at line 1:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> SELECT MAX(SAL) FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL)FROM EMP WHERE SAL<))));
+SELECT MAX(SAL) FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL)FROM EMP WHERE SAL<))))
+                                    *
+ERROR at line 1:
+ORA-00921: unexpected end of SQL command 
+
+
+SQL> 
+SQL> SELECT MAX(SAL) FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL)FROM EMP WHERE SAL<)))));
+SELECT MAX(SAL) FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL)FROM EMP WHERE SAL<)))))
+                                                                                                                                                                                                                      *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP
+  2  WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<)))));
+WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<)))))
+                                                                                                                      *
+ERROR at line 2:
+ORA-00936: missing expression 
+
+
+SQL> SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP
+  2   WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP
+  3  WHERE SAL<(SELECT MAX(SAL) FROM EMP
+  4   WHERE SAL<(SELECT MAX(SAL) FROM EMP)))));
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+
+SQL> SET PAGE 20 LINE 90
+SP2-0158: unknown SET option "PAGE"
+SQL> SET PAGES 20 LINES 90
+SQL>  SELECT * FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP
+  2    WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP
+  3   WHERE SAL<(SELECT MAX(SAL) FROM EMP
+  4    WHERE SAL<(SELECT MAX(SAL) FROM EMP)))));
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+
+SQL> SELECT DNAME,LOC FROM DEPT WHERE DEPTNO IN(SELECT DEPTNO FROM EMP WHERE
+  2  SAL=(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP WHERE SAL<(SELECT MAX(SAL) FROM EMP)))));
+
+DNAME          LOC                                                                        
+-------------- -------------                                                              
+SALES          CHICAGO                                                                    
+
+SQL> SELECT DNAME FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE COMM=(SELECT MAX(COMM) FROM EMP));
+SELECT DNAME FROM EMP WHERE DEPTNO IN (SELECT DEPTNO FROM EMP WHERE COMM=(SELECT MAX(COMM) FROM EMP))
+       *
+ERROR at line 1:
+ORA-00904: "DNAME": invalid identifier 
+
+
+SQL> ELECT DNAME FROM DEPT WHERE DEPTNO IN
+SP2-0734: unknown command beginning "ELECT DNAM..." - rest of line ignored.
+SQL> SELECT DNAME FROM DEPT WHERE DEPTNO IN
+  2  (SELECT DEPTNO FROM EMP WHERE COMM=
+  3  (SELECT MAX(COMM) FROM EMP));
+
+DNAME                                                                                     
+--------------                                                                            
+SALES                                                                                     
+
+SQL> SELECT COUNT(*) FROM EMP WHERE SAL>(SELECT SAL FROM EMP WHERE ENAME='SMITH' AND SAL<
+  2  (SELECT SAL FROM EMP WHERE ENAME='KING'));
+
+  COUNT(*)                                                                                
+----------                                                                                
+        13                                                                                
+
+SQL> SELECT AVG(COMM) FROM EMP WHERE JOB !=(SELECT JOB FROM EMP WHERE ENAME='JONES' AND
+  2  SAL=(SELECT SAL FROM EMP WHERE ENAME='MARTIN));
+ERROR:
+ORA-01756: quoted string not properly terminated 
+
+
+SQL> SELECT AVG(COMM) FROM EMP WHERE JOB !=(SELECT JOB FROM EMP WHERE ENAME='JONES' AND
+  2  SAL=(SELECT SAL FROM EMP WHERE ENAME='MARTIN'));
+
+ AVG(COMM)                                                                                
+----------                                                                                
+                                                                                          
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+14 rows selected.
+
+SQL> SELECT DNAME FROM DEPT WHERE DEPTNO=(SELECT DEPTNO FROM EMP WHERE EMPNO(SELECT MGR FROM EMP WHERE EMPNO
+  2  
+SQL>  SELECT DNAME FROM DEPT WHERE DEPTNO=
+  2  
+SQL> SELECT DNAME FROM DEPT WHERE DEPTNO=
+  2  (SELECT DEPTNO FROM EMP WHERE EMPNO=
+  3  (SELECT MGR FROM EMP WHERE EMPNO=
+  4  (SELECT MGR FROM EMP WHERE ENAME='SMITH')));
+
+DNAME                                                                                     
+--------------                                                                            
+RESEARCH                                                                                  
+
+SQL> SPOOL OFF

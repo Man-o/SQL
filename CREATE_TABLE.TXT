@@ -1,0 +1,110 @@
+SQL> SET PAGESIZE 20
+SQL> SET LINESIZE 90
+SQL> CREATE TABLE COURSE(CID NUMBER(10) PRIMARY KEY,
+  2  CNAME VARCHAR(20) NOT NULL,
+  3  FEES NUMBER(10) CHECK(FEES<20000),
+  4  TNAME VARCHAR(20) UNIQUE);
+
+Table created.
+
+SQL> DESC COURSE
+ Name                                            Null?    Type
+ ----------------------------------------------- -------- --------------------------------
+ CID                                             NOT NULL NUMBER(10)
+ CNAME                                           NOT NULL VARCHAR2(20)
+ FEES                                                     NUMBER(10)
+ TNAME                                                    VARCHAR2(20)
+
+SQL> CREATE TABLE STUDENT(SID NUMBER(10) PRIMARY KEY,
+  2  SNAME VARCHAR(10) NOT NULL,
+  3  AGE NUMBER(10) CHECK(AGE>20),
+  4  GENDER VARCHAR DEFAULT(MALE),
+  5  CNO NUMBER(10),
+  6  CID REFERENCES COURSE(CID));
+GENDER VARCHAR DEFAULT(MALE),
+               *
+ERROR at line 4:
+ORA-00906: missing left parenthesis 
+
+
+SQL> CREATE TABLE STUDENT(SID NUMBER(10) PRIMARY KEY,
+  2  SNAME VARCHAR(10) NOT NULL,
+  3   AGE NUMBER(10) CHECK(AGE>20),
+  4   GENDER VARCHAR(20)  DEFAULT(MALE),
+  5   CNO NUMBER(10),
+  6   CID REFERENCES COURSE(CID));
+ GENDER VARCHAR(20)  DEFAULT(MALE),
+                             *
+ERROR at line 4:
+ORA-00984: column not allowed here 
+
+
+SQL> CREATE TABLE STUDENT(SID NUMBER(10) PRIMARY KEY,
+  2  SNAME VARCHAR(10) NOT NULL,
+  3   AGE NUMBER(10) CHECK(AGE>20),
+  4   GENDER VARCHAR(20) DEFAULT 'MALE',
+  5  CNO NUMBER(10),
+  6  CID REFERENCES COURSE(CID));
+
+Table created.
+
+SQL> DESC STUDENT
+ Name                                            Null?    Type
+ ----------------------------------------------- -------- --------------------------------
+ SID                                             NOT NULL NUMBER(10)
+ SNAME                                           NOT NULL VARCHAR2(10)
+ AGE                                                      NUMBER(10)
+ GENDER                                                   VARCHAR2(20)
+ CNO                                                      NUMBER(10)
+ CID                                                      NUMBER(10)
+
+SQL> ALTER TABLE COURSE
+  2  ADD DURATION NUMBER(10);
+
+Table altered.
+
+SQL> DESC COURSE
+ Name                                            Null?    Type
+ ----------------------------------------------- -------- --------------------------------
+ CID                                             NOT NULL NUMBER(10)
+ CNAME                                           NOT NULL VARCHAR2(20)
+ FEES                                                     NUMBER(10)
+ TNAME                                                    VARCHAR2(20)
+ DURATION                                                 NUMBER(10)
+
+SQL> ALTER TABLE COURSE
+  2  RENAME COLUMN FEES TO AMOUNT;
+
+Table altered.
+
+SQL> DESC COURSE
+ Name                                            Null?    Type
+ ----------------------------------------------- -------- --------------------------------
+ CID                                             NOT NULL NUMBER(10)
+ CNAME                                           NOT NULL VARCHAR2(20)
+ AMOUNT                                                   NUMBER(10)
+ TNAME                                                    VARCHAR2(20)
+ DURATION                                                 NUMBER(10)
+
+SQL> ALTER TABLE COURSE
+  2  DROP COLUMN DURATION;
+
+Table altered.
+
+SQL> DESC COURSE
+ Name                                            Null?    Type
+ ----------------------------------------------- -------- --------------------------------
+ CID                                             NOT NULL NUMBER(10)
+ CNAME                                           NOT NULL VARCHAR2(20)
+ AMOUNT                                                   NUMBER(10)
+ TNAME                                                    VARCHAR2(20)
+
+SQL> ALTER TABLE COURSE
+  2  MODIFY AMOUNT VARCHAR(20);
+MODIFY AMOUNT VARCHAR(20)
+       *
+ERROR at line 2:
+ORA-01463: cannot modify column datatype with current constraint(s) 
+
+
+SQL> SPOOL OFF

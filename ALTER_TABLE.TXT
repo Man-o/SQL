@@ -1,0 +1,201 @@
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+COURSE                         TABLE                                            
+STUDENT                        TABLE                                            
+
+6 rows selected.
+
+SQL> SELECT * FROM COURSE;
+
+no rows selected
+
+SQL> SELECT * FROM STUDENT;
+
+no rows selected
+
+SQL> CREATE TABLE COURSE(CID NUMBER(10) NOTNULL,
+  2  CNAME VARCHAR(20) UNIQUE,
+  3  AMOUNT NUMBER(10) CHECK(AMOUNT>2000),
+  4  TRAINER VARCHAR(20) NOTNULL);
+CREATE TABLE COURSE(CID NUMBER(10) NOTNULL,
+                                   *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL>  CREATE TABLE COURSE(CID NUMBER(10) NOT NULL,
+  2   CNAME VARCHAR(20) UNIQUE,
+  3   AMOUNT NUMBER(10) CHECK(AMOUNT>2000),
+  4   TRAINER VARCHAR(20) NOTNULL);
+ TRAINER VARCHAR(20) NOTNULL)
+                     *
+ERROR at line 4:
+ORA-00907: missing right parenthesis 
+
+
+SQL>  CREATE TABLE COURSE(CID NUMBER(10) NOT NULL,
+  2   CNAME VARCHAR(20) UNIQUE,
+  3   AMOUNT NUMBER(10) CHECK(AMOUNT>2000),
+  4   TRAINER VARCHAR(20) NOT NULL);
+ CREATE TABLE COURSE(CID NUMBER(10) NOT NULL,
+              *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL>  CREATE TABLE COUR (CID NUMBER(10) NOT NULL,
+  2   CNAME VARCHAR(20) UNIQUE,
+  3   AMOUNT NUMBER(10) CHECK(AMOUNT>2000),
+  4   TRAINER VARCHAR(20) NOT NULL);
+
+Table created.
+
+SQL> SELECT * FROM COUR;
+
+no rows selected
+
+SQL> DESC COUR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(10)
+ CNAME                                              VARCHAR2(20)
+ AMOUNT                                             NUMBER(10)
+ TRAINER                                   NOT NULL VARCHAR2(20)
+
+SQL> ALTER TABLE COUR
+  2  ADD COLUMN DURATION NUMBER(10) CONSTRAINT;
+ADD COLUMN DURATION NUMBER(10) CONSTRAINT
+    *
+ERROR at line 2:
+ORA-00904: : invalid identifier 
+
+
+SQL>  ALTER TABLE COUR
+  2   ADD COLUMN DURATION NUMBER(10) NOT NULL;
+ ADD COLUMN DURATION NUMBER(10) NOT NULL
+     *
+ERROR at line 2:
+ORA-00904: : invalid identifier 
+
+
+SQL>  ALTER TABLE COUR
+  2  ADD DURATION NUMBER(10) NOT NULL;
+
+Table altered.
+
+SQL> DESC TAB;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TNAME                                     NOT NULL VARCHAR2(30)
+ TABTYPE                                            VARCHAR2(7)
+ CLUSTERID                                          NUMBER
+
+SQL> DESC COUR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(10)
+ CNAME                                              VARCHAR2(20)
+ AMOUNT                                             NUMBER(10)
+ TRAINER                                   NOT NULL VARCHAR2(20)
+ DURATION                                  NOT NULL NUMBER(10)
+
+SQL> ALTER TABLE COUR
+  2  RENAME AMOUNT TO FEES;
+RENAME AMOUNT TO FEES
+       *
+ERROR at line 2:
+ORA-14155: missing PARTITION or SUBPARTITION keyword 
+
+
+SQL>  ALTER TABLE COUR
+  2  RENAME COLUMN  AMOUNT TO FEES;
+
+Table altered.
+
+SQL> DESC COUR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(10)
+ CNAME                                              VARCHAR2(20)
+ FEES                                               NUMBER(10)
+ TRAINER                                   NOT NULL VARCHAR2(20)
+ DURATION                                  NOT NULL NUMBER(10)
+
+SQL> ALTER TABLE COUR
+  2  DROP COLUMN TRAINER;
+
+Table altered.
+
+SQL> DESC COUR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(10)
+ CNAME                                              VARCHAR2(20)
+ FEES                                               NUMBER(10)
+ DURATION                                  NOT NULL NUMBER(10)
+
+SQL> ALTER TABLE COUR
+  2  MODIFY FEES VARCHAR(20);
+MODIFY FEES VARCHAR(20)
+       *
+ERROR at line 2:
+ORA-01463: cannot modify column datatype with current constraint(s) 
+
+
+SQL> ALTER TABLE COUR
+  2  MODIFY FEES VARCHAR(20) NOT NULL;
+MODIFY FEES VARCHAR(20) NOT NULL
+       *
+ERROR at line 2:
+ORA-01463: cannot modify column datatype with current constraint(s) 
+
+
+SQL>  ALTER TABLE COUR
+  2   MODIFY FEES VARCHAR(20);
+ MODIFY FEES VARCHAR(20)
+        *
+ERROR at line 2:
+ORA-01463: cannot modify column datatype with current constraint(s) 
+
+
+SQL> ALTER TABLE COUR
+  2  MODIFY DURATION VARCHAR(20);
+
+Table altered.
+
+SQL> DESC COUR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(10)
+ CNAME                                              VARCHAR2(20)
+ FEES                                               NUMBER(10)
+ DURATION                                  NOT NULL VARCHAR2(20)
+
+SQL> ALTER TABLE COUR
+  2  ADD CONSTRAINT UNI UNIQUE(FEES);
+
+Table altered.
+
+SQL> ALTER TABLE COUR
+  2  MODIFY FEES VARCHAR(20);
+MODIFY FEES VARCHAR(20)
+       *
+ERROR at line 2:
+ORA-01463: cannot modify column datatype with current constraint(s) 
+
+
+SQL> ALTER TABLE COUR
+  2  MODIFY FEES VARCHAR(20) UNIQUE;
+MODIFY FEES VARCHAR(20) UNIQUE
+       *
+ERROR at line 2:
+ORA-01463: cannot modify column datatype with current constraint(s) 
+
+
+SQL> SPOOL OFF

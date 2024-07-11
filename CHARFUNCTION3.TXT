@@ -1,0 +1,140 @@
+SQL> SET PAGESIZE 20 LINESIZE 90
+SQL> SELECT TRANSLATE('MADAM','DA','DE') FROM DUAL;
+
+TRANS                                                                                     
+-----                                                                                     
+MEDEM                                                                                     
+
+SQL> SELECT TRANSLATE('FREAKY','EA','AE') FROM DUAL;
+
+TRANSL                                                                                    
+------                                                                                    
+FRAEKY                                                                                    
+
+SQL> SELECT NVL(COMM,3) FROM EMP;
+
+NVL(COMM,3)                                                                               
+-----------                                                                               
+          3                                                                               
+        300                                                                               
+        500                                                                               
+          3                                                                               
+       1400                                                                               
+          3                                                                               
+          3                                                                               
+          3                                                                               
+          3                                                                               
+          0                                                                               
+          3                                                                               
+          3                                                                               
+          3                                                                               
+          3                                                                               
+
+14 rows selected.
+
+SQL> SELECT NUL(COMM,'NULL') FROM EMP;
+SELECT NUL(COMM,'NULL') FROM EMP
+       *
+ERROR at line 1:
+ORA-00904: "NUL": invalid identifier 
+
+
+SQL> SELECT NVL (COMM,'NULL') FROM EMP;
+SELECT NVL (COMM,'NULL') FROM EMP
+                 *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> SELECT NVL(COMM,111) FROM DUAL;
+SELECT NVL(COMM,111) FROM DUAL
+           *
+ERROR at line 1:
+ORA-00904: "COMM": invalid identifier 
+
+
+SQL> SELECT NVL(COMM,111) FROM EMP;
+
+NVL(COMM,111)                                                                             
+-------------                                                                             
+          111                                                                             
+          300                                                                             
+          500                                                                             
+          111                                                                             
+         1400                                                                             
+          111                                                                             
+          111                                                                             
+          111                                                                             
+          111                                                                             
+            0                                                                             
+          111                                                                             
+          111                                                                             
+          111                                                                             
+          111                                                                             
+
+14 rows selected.
+
+SQL> SELECT COMM FROM EMP;
+
+      COMM                                                                                
+----------                                                                                
+                                                                                          
+       300                                                                                
+       500                                                                                
+                                                                                          
+      1400                                                                                
+                                                                                          
+                                                                                          
+                                                                                          
+                                                                                          
+         0                                                                                
+                                                                                          
+                                                                                          
+                                                                                          
+                                                                                          
+
+14 rows selected.
+
+SQL> SELECT NVL2(COMM,1,2) FROM EMP;
+
+NVL2(COMM,1,2)                                                                            
+--------------                                                                            
+             2                                                                            
+             1                                                                            
+             1                                                                            
+             2                                                                            
+             1                                                                            
+             2                                                                            
+             2                                                                            
+             2                                                                            
+             2                                                                            
+             1                                                                            
+             2                                                                            
+             2                                                                            
+             2                                                                            
+             2                                                                            
+
+14 rows selected.
+
+SQL> SELECT NVL2(COMM,0,1) FROM EMP;
+
+NVL2(COMM,0,1)                                                                            
+--------------                                                                            
+             1                                                                            
+             0                                                                            
+             0                                                                            
+             1                                                                            
+             0                                                                            
+             1                                                                            
+             1                                                                            
+             1                                                                            
+             1                                                                            
+             0                                                                            
+             1                                                                            
+             1                                                                            
+             1                                                                            
+             1                                                                            
+
+14 rows selected.
+
+SQL> SPOOL OFF

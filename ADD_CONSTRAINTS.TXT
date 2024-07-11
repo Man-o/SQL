@@ -1,0 +1,106 @@
+SQL> CREATE TABLE COUR(CID NUMBER(10),CNAME VARCHAR(20),FEES NUMBER(10));
+
+Table created.
+
+SQL> DESC COUR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                                NUMBER(10)
+ CNAME                                              VARCHAR2(20)
+ FEES                                               NUMBER(10)
+
+SQL> CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER DEFAULT(MALE));
+CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER DEFAULT(MALE))
+                                                                                *
+ERROR at line 1:
+ORA-00984: column not allowed here 
+
+
+SQL>  CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER DEFAULT('MALE'));
+ CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER DEFAULT('MALE'))
+                                                                  *
+ERROR at line 1:
+ORA-02263: need to specify the datatype for this column 
+
+
+SQL> CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER VARCHAR DEFAULT('MALE'));
+CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER VARCHAR DEFAULT('MALE'))
+                                                                                *
+ERROR at line 1:
+ORA-00906: missing left parenthesis 
+
+
+SQL> CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER VARCHAR(20) DEFAULT('MALE');
+CREATE TABLE STD(SID NUMBER(10),SNAME VARCHAR(20),AGE NUMBER(10),GENDER VARCHAR(20) DEFAULT('MALE')
+                                                                                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL>  CREATE TABLE STD(SID NUMBER(10),
+  2  SNAME VARCHAR(20),
+  3  AGE NUMBER(10),
+  4  GENDER VARCHAR DEFAULT('MALE'));
+GENDER VARCHAR DEFAULT('MALE'))
+               *
+ERROR at line 4:
+ORA-00906: missing left parenthesis 
+
+
+SQL>  CREATE TABLE STD(SID NUMBER(10),
+  2  SNAME VARCHAR(20),
+  3  AGE NUMBER(10),
+  4   GENDER VARCHAR(20) DEFAULT('MALE'));
+
+Table created.
+
+SQL> ALTER TABLE COUR
+  2  ADD CONSTRAINT PRI_K PRIMARY KEY(CID);
+
+Table altered.
+
+SQL> DESC COUR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(10)
+ CNAME                                              VARCHAR2(20)
+ FEES                                               NUMBER(10)
+
+SQL> DESC STD;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                                NUMBER(10)
+ SNAME                                              VARCHAR2(20)
+ AGE                                                NUMBER(10)
+ GENDER                                             VARCHAR2(20)
+
+SQL> ALTER TABLE STD
+  2  ADD CONSTRAINT FOR_K FOREIGN KEY (SID);
+ADD CONSTRAINT FOR_K FOREIGN KEY (SID)
+                                     *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL>  ALTER TABLE STD
+  2   ADD CONSTRAINT FOR_K FOREIGN KEY(SID);
+ ADD CONSTRAINT FOR_K FOREIGN KEY(SID)
+                                     *
+ERROR at line 2:
+ORA-00905: missing keyword 
+
+
+SQL> ALTER TABLE STD
+  2  ADD CONSTRAINT UNI UNIQUE(SNAME);
+
+Table altered.
+
+SQL> ALTER TABLE COURSE
+  2  ADD CONSTRAINT CHE CHECK(FEES>20000);
+ADD CONSTRAINT CHE CHECK(FEES>20000)
+                              *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SPOOL OFF

@@ -1,0 +1,200 @@
+SQL> SELECT TO_DATE('APR-19-24','DD-YY-MM') FROM DUAL;
+SELECT TO_DATE('APR-19-24','DD-YY-MM') FROM DUAL
+               *
+ERROR at line 1:
+ORA-01858: a non-numeric character was found where a numeric was expected 
+
+
+SQL> SELECT TO_DATE('19-APR-24','MM-DD-YY') FROM DUAL;
+SELECT TO_DATE('19-APR-24','MM-DD-YY') FROM DUAL
+               *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> SELECT TO_DATE('24-APR-19','YY-MM-DD') FROM DUAL;
+
+TO_DATE('                                                                       
+---------                                                                       
+19-APR-24                                                                       
+
+SQL> SELECT TO_CHAR('19-APR-2003','YY-MM-DD') FROM DUAL;
+SELECT TO_CHAR('19-APR-2003','YY-MM-DD') FROM DUAL
+               *
+ERROR at line 1:
+ORA-01722: invalid number 
+
+
+SQL> SELECT TO_CHAR(CURRENT_DATE,'MM-DD-YY') FROM DUAL;
+
+TO_CHAR(                                                                        
+--------                                                                        
+04-19-24                                                                        
+
+SQL> SELECT TO_CHAR(CURRENT_DATE,'MON-DD-YY') FROM DUAL;
+
+TO_CHAR(C                                                                       
+---------                                                                       
+APR-19-24                                                                       
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR(HIREDATE,'YYYY')='1981';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> SET PAGESIZE 20 LINESIZE 90
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR(HIREDATE,'MON')='MAY';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+
+SQL>  SELECT * FROM EMP
+  2   WHERE TO_CHAR(HIREDATE,'MM')=05;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+
+SQL> SELECT * FROM EMP
+  2  WHERE T0_CHAR(HIREDATE,'DAY')='MONDAY';
+WHERE T0_CHAR(HIREDATE,'DAY')='MONDAY'
+      *
+ERROR at line 2:
+ORA-00904: "T0_CHAR": invalid identifier 
+
+
+SQL>  SELECT * FROM EMP
+  2   WHERE T0_CHAR(HIREDATE,'DAY')='WEDNESDAY';
+ WHERE T0_CHAR(HIREDATE,'DAY')='WEDNESDAY'
+       *
+ERROR at line 2:
+ORA-00904: "T0_CHAR": invalid identifier 
+
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR (HIREDATE,'DAY')='MONDAY';
+
+no rows selected
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR (HIREDATE,'DAY')='TUESDAY';
+
+no rows selected
+
+SQL>  SELECT * FROM EMP
+  2   WHERE TO_CHAR (HIREDATE,'DAY')='SATURDAY';
+
+no rows selected
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR (HIREDATE,'DAY')='FRIDAY';
+
+no rows selected
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR (HIREDATE,'DAY')='WEDNESDAY';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR (HIREDATE,'DAY')='THURSDAY';
+
+no rows selected
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR (HIREDATE,'DAY')='SUNDAY';
+
+no rows selected
+
+SQL> SELECT * FROM EMP
+  2  WHERE TO_CHAR(DATE '25-03-2003','DAY');
+WHERE TO_CHAR(DATE '25-03-2003','DAY')
+                   *
+ERROR at line 2:
+ORA-01847: day of month must be between 1 and last day of month 
+
+
+SQL>  SELECT * FROM EMP
+  2  WHERE TO_CHAR(DATE '25-MAR-03','DAY');
+WHERE TO_CHAR(DATE '25-MAR-03','DAY')
+                   *
+ERROR at line 2:
+ORA-01843: not a valid month 
+
+
+SQL> SELECT TO_CHAR(DATE '2003-03-25','DAY') FROM DUAL;
+
+TO_CHAR(D                                                                                 
+---------                                                                                 
+TUESDAY                                                                                   
+
+SQL> SELECT TO_CHAR(DATE '2003-03-25','MON') FROM DUAL;
+
+TO_                                                                                       
+---                                                                                       
+MAR                                                                                       
+
+SQL> SELECT TO_CHAR(DATE '25-03-2003','DAY') FROM DUAL;
+SELECT TO_CHAR(DATE '25-03-2003','DAY') FROM DUAL
+                    *
+ERROR at line 1:
+ORA-01847: day of month must be between 1 and last day of month 
+
+
+SQL> SPOOL OFF

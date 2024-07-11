@@ -1,0 +1,338 @@
+SQL> set linesize 90;
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+14 rows selected.
+
+SQL> set pagesize 20;
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+14 rows selected.
+
+SQL> select 55||66|| from emp;
+select 55||66|| from emp
+                *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> select 55||66 from emp;
+
+55||                                                                                      
+----                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+5566                                                                                      
+
+14 rows selected.
+
+SQL> select Mano||Freak from emp;
+select Mano||Freak from emp
+             *
+ERROR at line 1:
+ORA-00904: "FREAK": invalid identifier 
+
+
+SQL> select 'MANO'||'FREAK' from emp;
+
+'MANO'||'                                                                                 
+---------                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+MANOFREAK                                                                                 
+
+14 rows selected.
+
+SQL>  select 'MANO'||' FREAK' from emp;
+
+'MANO'||'F                                                                                
+----------                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+MANO FREAK                                                                                
+
+14 rows selected.
+
+SQL> select 'MANO'|| 45 from emp;
+
+'MANO'                                                                                    
+------                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+MANO45                                                                                    
+
+14 rows selected.
+
+SQL> select ename||sal from emp;
+
+ENAME||SAL                                                                                
+--------------------------------------------------                                        
+SMITH800                                                                                  
+ALLEN1600                                                                                 
+WARD1250                                                                                  
+JONES2975                                                                                 
+MARTIN1250                                                                                
+BLAKE2850                                                                                 
+CLARK2450                                                                                 
+SCOTT3000                                                                                 
+KING5000                                                                                  
+TURNER1500                                                                                
+ADAMS1100                                                                                 
+JAMES950                                                                                  
+FORD3000                                                                                  
+MILLER1300                                                                                
+
+14 rows selected.
+
+SQL> select '25-03-2003' from emp;
+
+'25-03-200                                                                                
+----------                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+25-03-2003                                                                                
+
+14 rows selected.
+
+SQL> select 'Mano' from dual;
+
+'MAN                                                                                      
+----                                                                                      
+Mano                                                                                      
+
+SQL> select ename||'is working as a'||job||'in dept'||deptno from emp;
+
+ENAME||'ISWORKINGASA'||JOB||'INDEPT'||DEPTNO                                              
+---------------------------------------------------------------------------------         
+SMITHis working as aCLERKin dept20                                                        
+ALLENis working as aSALESMANin dept30                                                     
+WARDis working as aSALESMANin dept30                                                      
+JONESis working as aMANAGERin dept20                                                      
+MARTINis working as aSALESMANin dept30                                                    
+BLAKEis working as aMANAGERin dept30                                                      
+CLARKis working as aMANAGERin dept10                                                      
+SCOTTis working as aANALYSTin dept20                                                      
+KINGis working as aPRESIDENTin dept10                                                     
+TURNERis working as aSALESMANin dept30                                                    
+ADAMSis working as aCLERKin dept20                                                        
+JAMESis working as aCLERKin dept30                                                        
+FORDis working as aANALYSTin dept20                                                       
+MILLERis working as aCLERKin dept10                                                       
+
+14 rows selected.
+
+SQL> select ename||' is working as a '||job||' in dept ' ||deptno
+  2  from emp;
+
+ENAME||'ISWORKINGASA'||JOB||'INDEPT'||DEPTNO                                              
+-------------------------------------------------------------------------------------     
+SMITH is working as a CLERK in dept 20                                                    
+ALLEN is working as a SALESMAN in dept 30                                                 
+WARD is working as a SALESMAN in dept 30                                                  
+JONES is working as a MANAGER in dept 20                                                  
+MARTIN is working as a SALESMAN in dept 30                                                
+BLAKE is working as a MANAGER in dept 30                                                  
+CLARK is working as a MANAGER in dept 10                                                  
+SCOTT is working as a ANALYST in dept 20                                                  
+KING is working as a PRESIDENT in dept 10                                                 
+TURNER is working as a SALESMAN in dept 30                                                
+ADAMS is working as a CLERK in dept 20                                                    
+JAMES is working as a CLERK in dept 30                                                    
+FORD is working as a ANALYST in dept 20                                                   
+MILLER is working as a CLERK in dept 10                                                   
+
+14 rows selected.
+
+SQL> select ename||' is working as a '||job||' and earning '||sal||' more than 2000 and working in dept '||deptno from emp;
+
+ENAME||'ISWORKINGASA'||JOB||'ANDEARNING'||SAL||'MORETHAN2000ANDWORKINGINDEPT'||DEPTNO     
+------------------------------------------------------------------------------------------
+SMITH is working as a CLERK and earning 800 more than 2000 and working in dept 20         
+ALLEN is working as a SALESMAN and earning 1600 more than 2000 and working in dept 30     
+WARD is working as a SALESMAN and earning 1250 more than 2000 and working in dept 30      
+JONES is working as a MANAGER and earning 2975 more than 2000 and working in dept 20      
+MARTIN is working as a SALESMAN and earning 1250 more than 2000 and working in dept 30    
+BLAKE is working as a MANAGER and earning 2850 more than 2000 and working in dept 30      
+CLARK is working as a MANAGER and earning 2450 more than 2000 and working in dept 10      
+SCOTT is working as a ANALYST and earning 3000 more than 2000 and working in dept 20      
+KING is working as a PRESIDENT and earning 5000 more than 2000 and working in dept 10     
+TURNER is working as a SALESMAN and earning 1500 more than 2000 and working in dept 30    
+ADAMS is working as a CLERK and earning 1100 more than 2000 and working in dept 20        
+JAMES is working as a CLERK and earning 950 more than 2000 and working in dept 30         
+FORD is working as a ANALYST and earning 3000 more than 2000 and working in dept 20       
+MILLER is working as a CLERK and earning 1300 more than 2000 and working in dept 10       
+
+14 rows selected.
+
+SQL> select ename||' is an employee who is having a ID of '||empno||and earning commission exactly||comm||' who joined on '||hiredate from emp where deptno=30;
+select ename||' is an employee who is having a ID of '||empno||and earning commission exactly||comm||' who joined on '||hiredate from emp where deptno=30
+                                                               *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> select ename||' is an employee who is having a ID of '||empno||' and earning commission exactly '||comm||' who joined on '||hiredate from emp where deptno=30;
+
+ENAME||'ISANEMPLOYEEWHOISHAVINGAIDOF'||EMPNO||'ANDEARNINGCOMMISSIONEXACTLY'||COMM||'WHOJOI
+------------------------------------------------------------------------------------------
+ALLEN is an employee who is having a ID of 7499 and earning commission exactly 300 who joi
+ned on 20-FEB-81                                                                          
+                                                                                          
+WARD is an employee who is having a ID of 7521 and earning commission exactly 500 who join
+ed on 22-FEB-81                                                                           
+                                                                                          
+MARTIN is an employee who is having a ID of 7654 and earning commission exactly 1400 who j
+oined on 28-SEP-81                                                                        
+                                                                                          
+BLAKE is an employee who is having a ID of 7698 and earning commission exactly  who joined
+ on 01-MAY-81                                                                             
+                                                                                          
+TURNER is an employee who is having a ID of 7844 and earning commission exactly 0 who join
+ed on 08-SEP-81                                                                           
+                                                                                          
+JAMES is an employee who is having a ID of 7900 and earning commission exactly  who joined
+ on 03-DEC-81                                                                             
+
+ENAME||'ISANEMPLOYEEWHOISHAVINGAIDOF'||EMPNO||'ANDEARNINGCOMMISSIONEXACTLY'||COMM||'WHOJOI
+------------------------------------------------------------------------------------------
+                                                                                          
+
+6 rows selected.
+
+SQL> select * from emp where ename='SMITH' and deptno=20;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+
+SQL> select * from emp where job='SALESMAN' and deptno=30 and where sal=1600;
+select * from emp where job='SALESMAN' and deptno=30 and where sal=1600
+                                                         *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL>  select * from emp where job='SALESMAN' and deptno=30 and sal=1600;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+
+SQL> select * from emp where ename='MARTIN' and job='ANALYST' and sal>3000 and deptno=20;
+
+no rows selected
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC                                                             
+---------- -------------- -------------                                                   
+        10 ACCOUNTING     NEW YORK                                                        
+        20 RESEARCH       DALLAS                                                          
+        30 SALES          CHICAGO                                                         
+        40 OPERATIONS     BOSTON                                                          
+
+SQL> select * from dept where location='NEW YORK' and dname='ACCOUNTING';
+select * from dept where location='NEW YORK' and dname='ACCOUNTING'
+                         *
+ERROR at line 1:
+ORA-00904: "LOCATION": invalid identifier 
+
+
+SQL> select * from dept where loc='NEW YORK' and dname='ACCOUNTING';
+
+    DEPTNO DNAME          LOC                                                             
+---------- -------------- -------------                                                   
+        10 ACCOUNTING     NEW YORK                                                        
+
+SQL> spool off

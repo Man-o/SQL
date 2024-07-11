@@ -1,0 +1,81 @@
+SQL> SELECT E.ENAME,D.DNAME
+  2  FROM EMP E LEFT JOIN DEPT D
+  3  ON E.DEPTNO=D.DEPTNO;
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+SMITH      RESEARCH                                                             
+ALLEN      SALES                                                                
+WARD       SALES                                                                
+JONES      RESEARCH                                                             
+MARTIN     SALES                                                                
+BLAKE      SALES                                                                
+CLARK      ACCOUNTING                                                           
+SCOTT      RESEARCH                                                             
+KING       ACCOUNTING                                                           
+TURNER     SALES                                                                
+ADAMS      RESEARCH                                                             
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+JAMES      SALES                                                                
+FORD       RESEARCH                                                             
+MILLER     ACCOUNTING                                                           
+
+14 rows selected.
+
+SQL> SELECT E.ENAME,D.DNAME
+  2  FROM EMP E RIGHT JOIN DEPT D
+  3  ON E.DEPTNO=D.DEPTNO;
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+CLARK      ACCOUNTING                                                           
+KING       ACCOUNTING                                                           
+MILLER     ACCOUNTING                                                           
+JONES      RESEARCH                                                             
+FORD       RESEARCH                                                             
+ADAMS      RESEARCH                                                             
+SMITH      RESEARCH                                                             
+SCOTT      RESEARCH                                                             
+WARD       SALES                                                                
+TURNER     SALES                                                                
+ALLEN      SALES                                                                
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+JAMES      SALES                                                                
+BLAKE      SALES                                                                
+MARTIN     SALES                                                                
+           OPERATIONS                                                           
+
+15 rows selected.
+
+SQL> SELECT E.ENAME,D.DNAME
+  2  FROM EMP E FULL JOIN DEPT D
+  3  ON E.DEPTNO=D.DEPTNO;
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+SMITH      RESEARCH                                                             
+ALLEN      SALES                                                                
+WARD       SALES                                                                
+JONES      RESEARCH                                                             
+MARTIN     SALES                                                                
+BLAKE      SALES                                                                
+CLARK      ACCOUNTING                                                           
+SCOTT      RESEARCH                                                             
+KING       ACCOUNTING                                                           
+TURNER     SALES                                                                
+ADAMS      RESEARCH                                                             
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+JAMES      SALES                                                                
+FORD       RESEARCH                                                             
+MILLER     ACCOUNTING                                                           
+           OPERATIONS                                                           
+
+15 rows selected.
+
+SQL> SPOOL OFF

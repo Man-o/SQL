@@ -1,0 +1,101 @@
+SQL> DESC TAB;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TNAME                                     NOT NULL VARCHAR2(30)
+ TABTYPE                                            VARCHAR2(7)
+ CLUSTERID                                          NUMBER
+
+SQL> SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+COURSE                         TABLE                                            
+STUDENT                        TABLE                                            
+COUR                           TABLE                                            
+
+7 rows selected.
+
+SQL> DESC COURSE;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(10)
+ CNAME                                     NOT NULL VARCHAR2(20)
+ AMOUNT                                             NUMBER(10)
+ TNAME                                              VARCHAR2(20)
+
+SQL> DROP TABLE COUR;
+
+Table dropped.
+
+SQL>  SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+COURSE                         TABLE                                            
+STUDENT                        TABLE                                            
+BIN$hoIj4UowTEmPFm7bqn2T7A==$0 TABLE                                            
+
+7 rows selected.
+
+SQL> SHOW RECYCLEBIN;
+ORIGINAL NAME    RECYCLEBIN NAME                OBJECT TYPE  DROP TIME          
+---------------- ------------------------------ ------------ -------------------
+COUR             BIN$hoIj4UowTEmPFm7bqn2T7A==$0 TABLE        2024-04-10:09:14:09
+SQL> FLASHBACK TABLE COUR TO BEFORE DROP;
+
+Flashback complete.
+
+SQL>  SELECT * FROM TAB;
+
+TNAME                          TABTYPE  CLUSTERID                               
+------------------------------ ------- ----------                               
+DEPT                           TABLE                                            
+EMP                            TABLE                                            
+BONUS                          TABLE                                            
+SALGRADE                       TABLE                                            
+COURSE                         TABLE                                            
+STUDENT                        TABLE                                            
+COUR                           TABLE                                            
+
+7 rows selected.
+
+SQL> PURGE COUR;
+PURGE COUR
+      *
+ERROR at line 1:
+ORA-38302: invalid PURGE option 
+
+
+SQL> PURGE TABLE COUR;
+PURGE TABLE COUR
+*
+ERROR at line 1:
+ORA-38307: object not in RECYCLE BIN 
+
+
+SQL> DROP TABLE COUR;
+
+Table dropped.
+
+SQL> SHOW RECYCLEBIN;
+ORIGINAL NAME    RECYCLEBIN NAME                OBJECT TYPE  DROP TIME          
+---------------- ------------------------------ ------------ -------------------
+COUR             BIN$eBjbMb8gR/mEpmsTtcOEtg==$0 TABLE        2024-04-10:09:16:48
+SQL> PURGE TABLE COUR;
+
+Table purged.
+
+SQL> SHOW RECYCLEBIN;
+SQL> RENAME COURSE TO COURSES;
+
+Table renamed.
+
+SQL> SPOOL OFF

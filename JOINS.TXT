@@ -1,0 +1,279 @@
+SQL> SELECT EMP.*,DEPT*
+  2  FROM CL SCR
+  3  
+SQL> CL SCR
+SQL> SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP CROSS JOIN DEPT;
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+SMITH      ACCOUNTING                                                           
+ALLEN      ACCOUNTING                                                           
+WARD       ACCOUNTING                                                           
+JONES      ACCOUNTING                                                           
+MARTIN     ACCOUNTING                                                           
+BLAKE      ACCOUNTING                                                           
+CLARK      ACCOUNTING                                                           
+SCOTT      ACCOUNTING                                                           
+KING       ACCOUNTING                                                           
+TURNER     ACCOUNTING                                                           
+ADAMS      ACCOUNTING                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+JAMES      ACCOUNTING                                                           
+FORD       ACCOUNTING                                                           
+MILLER     ACCOUNTING                                                           
+SMITH      RESEARCH                                                             
+ALLEN      RESEARCH                                                             
+WARD       RESEARCH                                                             
+JONES      RESEARCH                                                             
+MARTIN     RESEARCH                                                             
+BLAKE      RESEARCH                                                             
+CLARK      RESEARCH                                                             
+SCOTT      RESEARCH                                                             
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+KING       RESEARCH                                                             
+TURNER     RESEARCH                                                             
+ADAMS      RESEARCH                                                             
+JAMES      RESEARCH                                                             
+FORD       RESEARCH                                                             
+MILLER     RESEARCH                                                             
+SMITH      SALES                                                                
+ALLEN      SALES                                                                
+WARD       SALES                                                                
+JONES      SALES                                                                
+MARTIN     SALES                                                                
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+BLAKE      SALES                                                                
+CLARK      SALES                                                                
+SCOTT      SALES                                                                
+KING       SALES                                                                
+TURNER     SALES                                                                
+ADAMS      SALES                                                                
+JAMES      SALES                                                                
+FORD       SALES                                                                
+MILLER     SALES                                                                
+SMITH      OPERATIONS                                                           
+ALLEN      OPERATIONS                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+WARD       OPERATIONS                                                           
+JONES      OPERATIONS                                                           
+MARTIN     OPERATIONS                                                           
+BLAKE      OPERATIONS                                                           
+CLARK      OPERATIONS                                                           
+SCOTT      OPERATIONS                                                           
+KING       OPERATIONS                                                           
+TURNER     OPERATIONS                                                           
+ADAMS      OPERATIONS                                                           
+JAMES      OPERATIONS                                                           
+FORD       OPERATIONS                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+MILLER     OPERATIONS                                                           
+
+56 rows selected.
+
+SQL> SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM DEPT CROSS JOIN EMP;
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+SMITH      ACCOUNTING                                                           
+ALLEN      ACCOUNTING                                                           
+WARD       ACCOUNTING                                                           
+JONES      ACCOUNTING                                                           
+MARTIN     ACCOUNTING                                                           
+BLAKE      ACCOUNTING                                                           
+CLARK      ACCOUNTING                                                           
+SCOTT      ACCOUNTING                                                           
+KING       ACCOUNTING                                                           
+TURNER     ACCOUNTING                                                           
+ADAMS      ACCOUNTING                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+JAMES      ACCOUNTING                                                           
+FORD       ACCOUNTING                                                           
+MILLER     ACCOUNTING                                                           
+SMITH      RESEARCH                                                             
+ALLEN      RESEARCH                                                             
+WARD       RESEARCH                                                             
+JONES      RESEARCH                                                             
+MARTIN     RESEARCH                                                             
+BLAKE      RESEARCH                                                             
+CLARK      RESEARCH                                                             
+SCOTT      RESEARCH                                                             
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+KING       RESEARCH                                                             
+TURNER     RESEARCH                                                             
+ADAMS      RESEARCH                                                             
+JAMES      RESEARCH                                                             
+FORD       RESEARCH                                                             
+MILLER     RESEARCH                                                             
+SMITH      SALES                                                                
+ALLEN      SALES                                                                
+WARD       SALES                                                                
+JONES      SALES                                                                
+MARTIN     SALES                                                                
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+BLAKE      SALES                                                                
+CLARK      SALES                                                                
+SCOTT      SALES                                                                
+KING       SALES                                                                
+TURNER     SALES                                                                
+ADAMS      SALES                                                                
+JAMES      SALES                                                                
+FORD       SALES                                                                
+MILLER     SALES                                                                
+SMITH      OPERATIONS                                                           
+ALLEN      OPERATIONS                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+WARD       OPERATIONS                                                           
+JONES      OPERATIONS                                                           
+MARTIN     OPERATIONS                                                           
+BLAKE      OPERATIONS                                                           
+CLARK      OPERATIONS                                                           
+SCOTT      OPERATIONS                                                           
+KING       OPERATIONS                                                           
+TURNER     OPERATIONS                                                           
+ADAMS      OPERATIONS                                                           
+JAMES      OPERATIONS                                                           
+FORD       OPERATIONS                                                           
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+MILLER     OPERATIONS                                                           
+
+56 rows selected.
+
+SQL> SET PAGES 20 LINES 90
+SQL> SELECT EMP.EMPNO,EMP.SAL,DEPT.LOC
+  2  FROM EMP CROSS JOIN DEPT
+  3  WHERE EMP.ENAME='SMITH';
+
+     EMPNO        SAL LOC                                                                 
+---------- ---------- -------------                                                       
+      7369        800 NEW YORK                                                            
+      7369        800 DALLAS                                                              
+      7369        800 CHICAGO                                                             
+      7369        800 BOSTON                                                              
+
+SQL> SELECT * FROM EMP
+  2  WHERE ENAME='SMITH';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+
+SQL> SELECT EMP.ENAME,EMP.SAL*12,DEPT.DNAME
+  2  FROM EMP CROSS JOIN DEPT
+  3  WHERE EMP.COMM IS NULL AND EMP.SAL>3000;
+
+ENAME      EMP.SAL*12 DNAME                                                               
+---------- ---------- --------------                                                      
+KING            60000 ACCOUNTING                                                          
+KING            60000 RESEARCH                                                            
+KING            60000 SALES                                                               
+KING            60000 OPERATIONS                                                          
+
+SQL> SELECT SAL>3000 FROM EMP;
+SELECT SAL>3000 FROM EMP
+          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> SELECT SAL FROM EMP;
+
+       SAL                                                                                
+----------                                                                                
+       800                                                                                
+      1600                                                                                
+      1250                                                                                
+      2975                                                                                
+      1250                                                                                
+      2850                                                                                
+      2450                                                                                
+      3000                                                                                
+      5000                                                                                
+      1500                                                                                
+      1100                                                                                
+       950                                                                                
+      3000                                                                                
+      1300                                                                                
+
+14 rows selected.
+
+SQL> SELECT EMP*,DEPT*
+  2  FROM EMP CROSS JOIN DEPT
+  3  WHERE ENAME LIKE 'S%';
+SELECT EMP*,DEPT*
+           *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL>  SELECT EMP*,DEPT*
+  2  FROM EMP CROSS JOIN DEPT
+  3  WHERE EMP.ENAME LIKE 'S%';
+ SELECT EMP*,DEPT*
+            *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> SELECT EMP.*,DEPT.*
+  2  FROM EMP CROSS JOIN DEPT
+  3  WHERE EMP.ENAME LIKE 'S%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+    DEPTNO DNAME          LOC                                                             
+---------- -------------- -------------                                                   
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+        10 ACCOUNTING     NEW YORK                                                        
+                                                                                          
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+        20 RESEARCH       DALLAS                                                          
+                                                                                          
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+        30 SALES          CHICAGO                                                         
+                                                                                          
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+        40 OPERATIONS     BOSTON                                                          
+                                                                                          
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+        10 ACCOUNTING     NEW YORK                                                        
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+    DEPTNO DNAME          LOC                                                             
+---------- -------------- -------------                                                   
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+        20 RESEARCH       DALLAS                                                          
+                                                                                          
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+        30 SALES          CHICAGO                                                         
+                                                                                          
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+        40 OPERATIONS     BOSTON                                                          
+                                                                                          
+
+8 rows selected.
+
+SQL> SPOOL OFF

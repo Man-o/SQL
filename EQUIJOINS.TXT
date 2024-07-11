@@ -1,0 +1,433 @@
+SQL> SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM EMP,DEPT
+  3  WHERE EMP.DEPTNO=DEPT.DEPTNO;
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+SMITH      RESEARCH                                                             
+ALLEN      SALES                                                                
+WARD       SALES                                                                
+JONES      RESEARCH                                                             
+MARTIN     SALES                                                                
+BLAKE      SALES                                                                
+CLARK      ACCOUNTING                                                           
+SCOTT      RESEARCH                                                             
+KING       ACCOUNTING                                                           
+TURNER     SALES                                                                
+ADAMS      RESEARCH                                                             
+
+ENAME      DNAME                                                                
+---------- --------------                                                       
+JAMES      SALES                                                                
+FORD       RESEARCH                                                             
+MILLER     ACCOUNTING                                                           
+
+14 rows selected.
+
+SQL> SET PAGES 20 LINES 90
+SQL> SELECT EMP.ENAME,DEPT.DNAME
+  2  FROM DEPT,EMP
+  3   WHERE EMP.DEPTNO=DEPT.DEPTNO;
+
+ENAME      DNAME                                                                          
+---------- --------------                                                                 
+SMITH      RESEARCH                                                                       
+ALLEN      SALES                                                                          
+WARD       SALES                                                                          
+JONES      RESEARCH                                                                       
+MARTIN     SALES                                                                          
+BLAKE      SALES                                                                          
+CLARK      ACCOUNTING                                                                     
+SCOTT      RESEARCH                                                                       
+KING       ACCOUNTING                                                                     
+TURNER     SALES                                                                          
+ADAMS      RESEARCH                                                                       
+JAMES      SALES                                                                          
+FORD       RESEARCH                                                                       
+MILLER     ACCOUNTING                                                                     
+
+14 rows selected.
+
+SQL> SELECT E.SAL*12,E.COMM/2,D.*
+  2  FROM EMP E,DEPT D
+  3  WHERE D.LOC='NEWYORK' AND D.DEPTNO=E.DEPTNO;
+
+no rows selected
+
+SQL> SELECT * FROM DEPT;
+
+    DEPTNO DNAME          LOC                                                             
+---------- -------------- -------------                                                   
+        10 ACCOUNTING     NEW YORK                                                        
+        20 RESEARCH       DALLAS                                                          
+        30 SALES          CHICAGO                                                         
+        40 OPERATIONS     BOSTON                                                          
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+14 rows selected.
+
+SQL> SELECT E.SAL*12,E.COMM/2,D.*
+  2  FROM EMP E,DEPT D
+  3  WHERE D.LOC='NEW YORK'  AND D.DEPTNO=E.DEPTNO;
+
+  E.SAL*12   E.COMM/2     DEPTNO DNAME          LOC                                       
+---------- ---------- ---------- -------------- -------------                             
+     29400                    10 ACCOUNTING     NEW YORK                                  
+     60000                    10 ACCOUNTING     NEW YORK                                  
+     15600                    10 ACCOUNTING     NEW YORK                                  
+
+SQL> SELECT E.EMPNO,E.ENAME,E.SAL/2,E.JOB,D.DNAME,D.LOC
+  2  FROM EMP E,DEPT D
+  3  WHERE E.DEPTNO=D.DEPTNO;
+
+     EMPNO ENAME         E.SAL/2 JOB       DNAME          LOC                             
+---------- ---------- ---------- --------- -------------- -------------                   
+      7369 SMITH             400 CLERK     RESEARCH       DALLAS                          
+      7499 ALLEN             800 SALESMAN  SALES          CHICAGO                         
+      7521 WARD              625 SALESMAN  SALES          CHICAGO                         
+      7566 JONES          1487.5 MANAGER   RESEARCH       DALLAS                          
+      7654 MARTIN            625 SALESMAN  SALES          CHICAGO                         
+      7698 BLAKE            1425 MANAGER   SALES          CHICAGO                         
+      7782 CLARK            1225 MANAGER   ACCOUNTING     NEW YORK                        
+      7788 SCOTT            1500 ANALYST   RESEARCH       DALLAS                          
+      7839 KING             2500 PRESIDENT ACCOUNTING     NEW YORK                        
+      7844 TURNER            750 SALESMAN  SALES          CHICAGO                         
+      7876 ADAMS             550 CLERK     RESEARCH       DALLAS                          
+      7900 JAMES             475 CLERK     SALES          CHICAGO                         
+      7902 FORD             1500 ANALYST   RESEARCH       DALLAS                          
+      7934 MILLER            650 CLERK     ACCOUNTING     NEW YORK                        
+
+14 rows selected.
+
+SQL> SELECT E.ENAME,E.JOB,D.*
+  2  FROM EMP E,DEPT D
+  3  WHERE SUBSTR(E.ENAME,1,1)='M' AND TO_CHAR(E.HIREDATE,'MON')='SEPT'
+  4  AND EMPNO IN(7369,7654) E.DEPTNO=D.DEPTNO;
+AND EMPNO IN(7369,7654) E.DEPTNO=D.DEPTNO
+                        *
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT E.ENAME,E.JOB,D.*
+  2  FROM EMP E,DEPT D
+  3  WHERE SUBSTR(E.ENAME,1,1)='M' AND TO_CHAR(E.HIREDATE,'MON')='SEPT'
+  4  AND EMPNO IN(7369,7654) AND E.DEPTNO=D.DEPTNO;
+
+no rows selected
+
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+14 rows selected.
+
+SQL> SELECT E.*,D.LOC
+  2  FROM EMP E,DEPT D
+  3  WHERE INSTR(E.JOB,'A')>=2 AND SUBSTR(E.SAL,-1)=0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+NEW YORK                                                                                  
+                                                                                          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+DALLAS                                                                                    
+                                                                                          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+CHICAGO                                                                                   
+                                                                                          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+BOSTON                                                                                    
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+NEW YORK                                                                                  
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+DALLAS                                                                                    
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+CHICAGO                                                                                   
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+BOSTON                                                                                    
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+NEW YORK                                                                                  
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+DALLAS                                                                                    
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+CHICAGO                                                                                   
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+BOSTON                                                                                    
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+NEW YORK                                                                                  
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+DALLAS                                                                                    
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+CHICAGO                                                                                   
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+BOSTON                                                                                    
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+NEW YORK                                                                                  
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+DALLAS                                                                                    
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+CHICAGO                                                                                   
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+BOSTON                                                                                    
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+NEW YORK                                                                                  
+                                                                                          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+DALLAS                                                                                    
+                                                                                          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+CHICAGO                                                                                   
+                                                                                          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+BOSTON                                                                                    
+                                                                                          
+
+24 rows selected.
+
+SQL> SET PAGES 20 LINES 90
+SQL> SELECT E.*,D.LOC
+  2  FROM EMP E,DEPT D
+  3  WHERE INSTR(E.JOB,'A')>=2 AND SUBSTR(E.SAL,-1)=0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+NEW YORK                                                                                  
+                                                                                          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+DALLAS                                                                                    
+                                                                                          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+CHICAGO                                                                                   
+                                                                                          
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+BOSTON                                                                                    
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+NEW YORK                                                                                  
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+DALLAS                                                                                    
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+CHICAGO                                                                                   
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+BOSTON                                                                                    
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+NEW YORK                                                                                  
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+DALLAS                                                                                    
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+CHICAGO                                                                                   
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+BOSTON                                                                                    
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+NEW YORK                                                                                  
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+DALLAS                                                                                    
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+CHICAGO                                                                                   
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+BOSTON                                                                                    
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+NEW YORK                                                                                  
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+DALLAS                                                                                    
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+CHICAGO                                                                                   
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+BOSTON                                                                                    
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+NEW YORK                                                                                  
+                                                                                          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+DALLAS                                                                                    
+                                                                                          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+CHICAGO                                                                                   
+                                                                                          
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+BOSTON                                                                                    
+                                                                                          
+
+24 rows selected.
+
+SQL> SELECT E.*,D.LOC
+  2  FROM EMP E,DEPT D
+  3  WHERE INSTR(E.JOB,'A')>=2 AND SUBSTR(E.SAL,-1)=0 AND E.DEPTNO=D.DEPTNO;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+CHICAGO                                                                                   
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+CHICAGO                                                                                   
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+CHICAGO                                                                                   
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+CHICAGO                                                                                   
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+NEW YORK                                                                                  
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+CHICAGO                                                                                   
+                                                                                          
+
+6 rows selected.
+
+SQL>  SELECT E.*,D.LOC
+  2   FROM EMP E,DEPT D
+  3   WHERE INSTR(E.JOB,'A')>=2 AND MOD(E.SAL,2)=0 AND E.DEPTNO=D.DEPTNO;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+CHICAGO                                                                                   
+                                                                                          
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+CHICAGO                                                                                   
+                                                                                          
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+CHICAGO                                                                                   
+                                                                                          
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+CHICAGO                                                                                   
+                                                                                          
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+NEW YORK                                                                                  
+                                                                                          
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+LOC                                                                                       
+-------------                                                                             
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+CHICAGO                                                                                   
+                                                                                          
+
+6 rows selected.
+
+SQL> SPOOL OFF

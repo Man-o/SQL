@@ -1,0 +1,104 @@
+SQL> SET PAGESIZE 20
+SQL> SET LINESIZE 90
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+14 rows selected.
+
+SQL> SELECT * FROM EMP WHERE ENAME LIKE 'W%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+
+SQL> SELECT * FROM EMP WHERE ENAME LIKE 'A_L%N';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+
+SQL> SELECT * FROM EMP WHERE SAL LIKE '%00';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+8 rows selected.
+
+SQL> SELECT * FROM EMP WHERE SAL LIKE '%0';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30     
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30     
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30     
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30     
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10     
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20     
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10     
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30     
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20     
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10     
+
+13 rows selected.
+
+SQL> SELECT * FROM EMP WHERE SAL LIKE '___';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------     
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20     
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30     
+
+SQL> SELECT SAL*12 FROM EMP WHERE JOB LIKE 'S%N';
+
+    SAL*12                                                                                
+----------                                                                                
+     19200                                                                                
+     15000                                                                                
+     15000                                                                                
+     18000                                                                                
+
+SQL> SELECT JOB,ENAME, SAL*12 FROM EMP WHERE JOB LIKE 'S%N';
+
+JOB       ENAME          SAL*12                                                           
+--------- ---------- ----------                                                           
+SALESMAN  ALLEN           19200                                                           
+SALESMAN  WARD            15000                                                           
+SALESMAN  MARTIN          15000                                                           
+SALESMAN  TURNER          18000                                                           
+
+SQL> SELECT * FROM DEPT WHERE LOC LIKE '%O%';
+
+    DEPTNO DNAME          LOC                                                             
+---------- -------------- -------------                                                   
+        10 ACCOUNTING     NEW YORK                                                        
+        30 SALES          CHICAGO                                                         
+        40 OPERATIONS     BOSTON                                                          
+
+SQL> SPOOL OFF

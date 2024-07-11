@@ -1,0 +1,121 @@
+SQL> SELECT MOD(34,4) FROM DUAL;
+
+ MOD(34,4)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> SELECT MOD(4,34) FROM DUAL;
+
+ MOD(4,34)                                                                      
+----------                                                                      
+         4                                                                      
+
+SQL> SELECT MOD (30,0) FROM DUAL;
+
+ MOD(30,0)                                                                      
+----------                                                                      
+        30                                                                      
+
+SQL> SELECT ABS(-1) FROM DUAL;
+
+   ABS(-1)                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> SELECT ABS(1) FROM DUAL;
+
+    ABS(1)                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> SELECT POWER(3,3) FROM DUAL;
+
+POWER(3,3)                                                                      
+----------                                                                      
+        27                                                                      
+
+SQL> SELECT POWER(7,4) FROM DUAL;
+
+POWER(7,4)                                                                      
+----------                                                                      
+      2401                                                                      
+
+SQL> SELECT SQRT (11) FROM DUAL;
+
+  SQRT(11)                                                                      
+----------                                                                      
+3.31662479                                                                      
+
+SQL> SELECT SQRT (121) FROM DUAL;
+
+ SQRT(121)                                                                      
+----------                                                                      
+        11                                                                      
+
+SQL> SELECT SQRT (9) FROM DUAL;
+
+   SQRT(9)                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SELECT SQRT (200) FROM DUAL;
+
+ SQRT(200)                                                                      
+----------                                                                      
+14.1421356                                                                      
+
+SQL> SELECT FLOOR(22.1) FROM DUAL;
+
+FLOOR(22.1)                                                                     
+-----------                                                                     
+         22                                                                     
+
+SQL> SELECT FLOOR(22.7) FROM DUAL;
+
+FLOOR(22.7)                                                                     
+-----------                                                                     
+         22                                                                     
+
+SQL> SELECT CEIL (19.3) FROM DUAL;
+
+CEIL(19.3)                                                                      
+----------                                                                      
+        20                                                                      
+
+SQL> SELECT CEIL (19.9) FROM DUAL;
+
+CEIL(19.9)                                                                      
+----------                                                                      
+        20                                                                      
+
+SQL> SELECT CEIL (19) FROM DUAL;
+
+  CEIL(19)                                                                      
+----------                                                                      
+        19                                                                      
+
+SQL> SELECT FLOOR(22) FROM DUAL;
+
+ FLOOR(22)                                                                      
+----------                                                                      
+        22                                                                      
+
+SQL> SELECT ROUND(33.3) FROM DUAL;
+
+ROUND(33.3)                                                                     
+-----------                                                                     
+         33                                                                     
+
+SQL> SELECT ROUND(33.7) FROM DUAL;
+
+ROUND(33.7)                                                                     
+-----------                                                                     
+         34                                                                     
+
+SQL> SELECT ROUND(33) FROM DUAL;
+
+ ROUND(33)                                                                      
+----------                                                                      
+        33                                                                      
+
+SQL> SPOOL OFF
